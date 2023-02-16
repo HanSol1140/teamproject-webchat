@@ -7,25 +7,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/login.css">
+    <script>
+            const urlParams = new URL(location.href).searchParams;
+            const channelid = urlParams.get('channelId');
+            console.log(channelid);
+    </script>
 </head>
 <body>
-    <div id="wrap">
-        <section class="login-box">
-            <div class="user-box">
-                <input type="email" id="signInEmail" value="skycriper@naver.com">
-                <label>Email</label>
-            </div>
-            <div class="user-box">
-                <input type="password" id="signInPassword" value="asdf1234!">
-                <label>Password</label>
-            </div>
-            <div class="singinbtn">
-                <button onclick="signIn()">로그인</button>
-                <button onclick="location.href='./signup.html'">회원가입</button>
-                <button onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=a6be9b62b761e5b5ee34bfa49d268617&redirect_uri=http://localhost:8080/api/users/kakao&response_type=code'">카카오톡로그인</button>            
-            </div>
-        </section>
-    </div>
+
 </body>
 </html>
 <script src="./js/user.js"></script>
