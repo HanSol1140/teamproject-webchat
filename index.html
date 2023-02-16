@@ -8,17 +8,18 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/index.css">
     <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/cookies.js"></script>
     <script src="./js/user.js"></script>
     <script src="./js/channel.js"></script>
     <script>
         $(document).ready(function () {
             getUserMe();
-            // getChannelList();
+
             // const urlParams = new URL(location.href).searchParams;
             // const name = urlParams.get('id');
             // console.log(name);
-
         });
+        
     </script>
 </head>
 <body>
@@ -28,7 +29,9 @@
             <section>
                 <article class="top">
                     <div class="top-logo">
-                        <p>Sbug</p>
+                        <a href="./index.html">
+                            <p>Sbug</p>
+                        </a>
                     </div>
                     <div class="top-searchbox">
                         <input type="text" class="search" placeholder="검색" value=""/>
@@ -36,19 +39,7 @@
                     <div class="top-personalmenu">
                         <p id="welcome" style="padding-left:20px;">img</p>
                     </div>
-                    <!-- 클릭시 나오는 메뉴 시작-->
-                    <div class="personalmenu-popup">
-                        <h2 class="title">개인메뉴</h2>
-                        <button onclick="location.href='updatemember.html'">회원정보수정</button>
-                        <button onclick="deleteMember()">회원탈퇴</button>
-                        <button onclick="logoutMember()">로그아웃</button>
-                      </div>
-                      <script>
-                        $('.top-personalmenu').click(function(){
-                            $('.personalmenu-popup').toggle();
-                        });
-                      </script>
-                    <!-- /클릭시 나오는 메뉴-->
+
                 </article>
             </section>
         </header>
@@ -65,24 +56,8 @@
                         <!-- /가입된 채널목록 들어가는 공간 -->
                     </ul>
                     <button class="createchannelbtn">채널생성</button>
-
-                    <!-- 채널생성 팝업 -->
-                    <article class="blackcurtain">
-                        <div>
-                            <h2>채널만들기</h2>
-                            <p>채널명</p>
-                            <input type="text" class="createchannelname">
-                            <button onclick="createChannel()">생성</button>
-                        </div>
-
-                    </article>
-                    <script>
-                        $('.createchannelbtn').click(function(){
-                            $('.blackcurtain').toggle();
-                        });
-                    </script>
-                    <!-- /채널생성 팝업 -->
-
+                    <button onclick="refreshToken()">RTK토큰재발급테스트</button>
+                    <button onclick="deleteCookie()">쿠키삭제테스트</button>
                 </article>
                 <!-- /채널 리스트 끝 -->
             </section>
@@ -91,6 +66,47 @@
     </div>
 </body>
 </html>
+<script src="./js/chat.js"></script>
+<script src="./js/component.js"></script>
+
+
+<!-- 팝업 -->
+<!-- 우측 상단 팝업-->
+<div class="personalmenu-popup">
+    <h2 class="title">개인메뉴</h2>
+    <button onclick="location.href='updatemember.html'">회원정보수정</button>
+    <button onclick="deleteMember()">회원탈퇴</button>
+    <button onclick="logoutMember()">로그아웃</button>
+    </div>
+    <script>
+    $('.top-personalmenu').click(function(){
+        $('.personalmenu-popup').toggle();
+    });
+    </script>
+<!-- /우측 상단 팝업-->
+
+
+<!-- 채널생성 팝업 -->
+<article class="blackcurtain">
+    <div>
+        <h2>채널만들기</h2>
+        <p>채널명</p>
+        <input type="text" class="createchannelname">
+        <button onclick="createChannel()">생성</button>
+        <button class="blackcurtaincloser">취소</button>
+    </div>
+</article>
+<script>
+    $('.createchannelbtn').click(function(){
+        $('.blackcurtain').toggle();
+    });
+    $('.blackcurtaincloser').click(function(){
+        $('.blackcurtain').toggle();
+    });
+</script>
+<!-- /채널생성 팝업 -->
+
+
 
                 <!-- 멤버리스트 시작 -->
                 <!-- <article class="memberlist">
@@ -120,5 +136,3 @@
 
 
 
-<script src="./js/chat.js"></script>
-<script src="./js/component.js"></script>

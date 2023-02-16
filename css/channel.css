@@ -1,0 +1,256 @@
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+}
+
+/* HEADER */
+header {
+    height: 50px;
+    border-bottom: 1px solid #000;
+}   
+/* top */
+.top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-logo{
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    /* border: 1px solid #000; */
+}
+.top-logo p {
+    height: 20px;
+    font-size: 1.25rem;
+}
+
+.top-searchbox{
+    min-width: 350px;
+    width: 70%;
+    height: 50px;
+    /* border: 1px solid #000; */
+}
+
+.top-searchbox input {
+    min-width: 350px;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 6px;
+    padding: 4px;
+    margin-top: 7.5px;
+    border: none;
+
+}
+
+.top-personalmenu{
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #717171;
+    /* border: 1px solid #000; */
+}
+/* /top */
+
+
+/* 채널초대/삭제 */
+header .invitevar{
+
+    width: 50%;
+    height: 50px;
+    border-bottom: 1px solid #000;
+    padding-left: 10px;
+}
+header .channeldelete{
+    width: 50%;
+    height: 50px;
+    border-bottom: 1px solid #000;
+    padding-right: 10px;
+}
+header .invitevar button{
+    margin-top: 4px;
+    padding: 4px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px; 
+    border: none;
+}
+
+header .channeldelete button{
+    margin-top: 4px;
+    padding: 4px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px; 
+    border: none;
+    text-align: right;
+}
+header section article:nth-child(2) button:hover {
+    background-color: #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+}
+header section article:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+}
+header section article:nth-child(2) div:nth-child(2) {
+    text-align: right;
+}
+/* 채널초대/삭제 */
+
+/* /HEADER  */
+
+
+/* MAIN */
+/* 채팅 */
+main {
+    width: 100%;
+    height: calc(100% - 100px);
+    background-color: #ccc; 
+    position: absolute;
+    margin-top: 50px;
+}
+main .messagelist {
+    background-color: 616161;
+    height: calc(100% - 150px);
+
+    border-bottom: 1px solid #000;
+    overflow-y: auto;
+}
+/* 내 채팅 */
+main .mymessagebox{
+    padding: 10px 40px;
+    min-width: 300px;
+    width: 30%;
+    float: right;
+    clear: both;
+    text-align: right;
+    margin-bottom: 10px;
+
+
+
+}
+main .mymessagename{
+    width: 100%;
+    padding-right: 20px;
+    margin-bottom: 8px;
+
+}
+main .mymessage {
+    width: 100%;
+    border-radius: 4px;
+    /* border: 1px solid #000; */
+    text-align: left;
+    padding: 10px;
+    word-wrap: break-word;
+    background-color: #ffdd22;
+}
+
+/* /내 채팅 */
+
+
+/* 타인의 채팅 */
+main .othersmessagebox{
+    padding: 10px 40px;
+    min-width: 300px;
+    width: 30%;
+    float: left;
+    clear: both;
+    text-align: right;
+    margin-bottom: 10px;
+}
+main .othersmessagename{
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;
+    margin-bottom: 8px;
+
+}
+main .othersmessage {
+    width: 100%;
+    border-radius: 4px;
+    text-align: left;
+    padding: 10px;
+    word-wrap: break-word;
+    background-color: #768bd1;
+}
+
+
+
+/* /타인의 채팅 */
+/* /채팅*/
+/* /MAIN*/
+
+/* 팝업메뉴 모음 */
+
+/* 우측상단 팝업메뉴*/
+.personalmenu-popup {
+    display: none;
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    top: 40px;
+    right: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 100;
+    /* background-color: red; */
+}
+
+.personalmenu-popup button {
+    width: 100%;
+    
+}
+/* /우측상단 팝업메뉴*/
+
+
+
+/* 채널초대 팝업 */
+.invitenamewriter-popup {
+    display: none;
+    position: absolute;
+    margin-top: -50px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.invitenamewriter-popup div {
+    position: relative;
+    width: 500px;
+    height: 200px;
+    top: 35%;
+    left: 50%;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: #fff;
+    transform: translate(-50%,-50%); 
+}
+.invitenamewriter-popup div h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.invitenamewriter-popup div p {
+    text-align: left;
+}
+.invitenamewriter-popup div input {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.invitenamewriter-popup div button {
+    position: relative;
+    left:366px;
+    font-size: 16px;
+    padding: 4px;
+}
+
+/* /채널초대 팝업 */
+/* /팝업메뉴 모음 */

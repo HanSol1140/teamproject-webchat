@@ -151,7 +151,7 @@ main .createchannelbtn {
 
 
 /* 채널생성 / 팝업 */
-main .blackcurtain {
+.blackcurtain {
     display: none;
     position: absolute;
     top: 0;
@@ -161,29 +161,33 @@ main .blackcurtain {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-main .blackcurtain div {
+.blackcurtain div {
     position: relative;
     width: 500px;
     height: 200px;
     top: 35%;
     left: 50%;
     border-radius: 4px;
+    padding: 20px;
     background-color: #fff;
     transform: translate(-50%,-50%);
-    padding: 20px;
-    
 }
-main .blackcurtain div p {
+.blackcurtain div h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.blackcurtain div p {
     text-align: left;
 }
-main .blackcurtain div input {
+.blackcurtain div input {
     width: 100%;
     font-size: 20px;
+    margin-bottom: 10px;
 }
-main .blackcurtain div button {
-    position: absolute;
-    right: 20px;
-    top: 110px;
+.blackcurtain div button {
+    position: relative;
+    left:366px;
     font-size: 16px;
     padding: 4px;
 }

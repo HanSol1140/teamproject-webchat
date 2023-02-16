@@ -1,24 +1,4 @@
-function createComment(){
-	var settings = {
-		"url": "http://localhost:8080/api/channels/5/thread",
-		// "url": "http://localhost:8080/api/channels/${id}/thread",
-		// "url": "http://localhost:8080/api/channels/{"+id+"}/thread",
-		// "url": "http://localhost:8080/api/channels/"+{id}+"/thread",
-		// "url": "http://localhost:8080/api/channels/"+id+"/thread",
-		"method": "POST",
-		"timeout": 0,
-		"headers": {
-      "Content-Type": "application/json",
-		  "Authorization": localStorage.getItem('accessToken')
-		},
-    "data": JSON.stringify({
-      "contents": $('.writebox').val()
-    })
-	  };
-	$.ajax(settings).done(function (response) {
-		console.log(response);
-  });
-}
+
 
 
 // 엔터누르면 실행되는 스크립트

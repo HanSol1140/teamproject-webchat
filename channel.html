@@ -6,17 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/chatroom.css">
+    <link rel="stylesheet" href="./css/channel.css">
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/user.js"></script>
     <script src="./js/channel.js"></script>
     <script>
         $(document).ready(function () {
-            getUserMe();
-            // getChannelList();
             const urlParams = new URL(location.href).searchParams;
-            const userid = urlParams.get('channelId');
-            console.log(userid);
+            const channelid = urlParams.get('channelId');
+
+    
+            console.log(channelid+"=채널아이디");
+            $('.sendbtn').click(function() {
+                createThread(channelid);
+            });
+            getThreads(channelid);
 
         });
     </script>
@@ -28,7 +32,9 @@
             <section>
                 <article class="top">
                     <div class="top-logo">
-                        <p>Sbug</p>
+                        <a href="./index.html">
+                            <p>Sbug</p>
+                        </a>
                     </div>
                     <div class="top-searchbox">
                         <input type="text" class="search" placeholder="검색" value=""/>
@@ -50,6 +56,16 @@
                       </script>
                     <!-- /클릭시 나오는 메뉴-->
                 </article>
+                <article>
+                    <div class="invitevar">
+                        <button class="invitebtn">+초대하기</button>
+                    </div>                    
+
+
+                    <div class="channeldelete">
+                        <button onclick="deleteChannel()">채널삭제</button>
+                    </div>
+                </article>
             </section>
         </header>
         <!-- /회원&메뉴 선택 섹션 끝 -->
@@ -57,17 +73,38 @@
         <!-- 채팅방 -->
         <main role="main">
             <section class="messagelist">
-                메세지asfasdfsafds
+
             </section>
-            <section class="messagewriter">
-                메세지보내기
+            <section class="messagesendbox">
+                <input type="text" class="writebox">
+            
+                </input>
+                <button class="sendbtn"> 보내기 </button>
             </section>
         </main>
         <!-- /채팅방 -->
     </div>
 </body>
 </html>
-
-
 <script src="./js/chat.js"></script>
 <script src="./js/component.js"></script>
+
+<!-- 채널초대 팝업 -->
+<article class="invitenamewriter-popup">
+    <div class="invitenamebox">
+        <h2>채널만들기</h2>
+        <p>채널명</p>
+        <input type="text" class="invitename" placeholder="이메일입력">
+        <button onclick="inviteUser()">생성</button>
+        <button class="invitebtncloser">취소</button>
+    </div>
+</article>
+<script>
+        $('.invitebtn').click(function(){
+        $('.invitenamewriter-popup').toggle();
+    });
+    $('.invitebtncloser').click(function(){
+        $('.invitenamewriter-popup').toggle();
+    });
+</script>
+<!-- 채널초대 팝업 -->

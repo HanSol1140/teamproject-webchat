@@ -1,3 +1,39 @@
+// 쿠키받기
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// 쿠키삭제 
+function deleteCookie() {
+  document.cookie = '"refreshToken"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
+
+// 토큰 재발급
+function refreshToken(){
+	var settings = {
+		"url": "http://localhost:8080/account/reissue",
+		"method": "GET",
+		"timeout": 0,
+		"headers": {
+      "Authorization": localStorage.getItem('refreshToken')
+      // "Authorization": getCookie('refreshToken')
+		},
+	  };
+	  $.ajax(settings).done(function (response) {
+		console.log(response);
+    alert("재발급완료");
+    
+  });
+}
+
+
+
+
+
+
+
 //회원가입 //
 function signUp() {
   var settings = {
@@ -20,12 +56,7 @@ function signUp() {
   });
 }
 
-// 쿠키받기
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
+
 
 //로그인 //
 function signIn() {
@@ -37,17 +68,12 @@ function signIn() {
       "Content-Type":"application/json"
     },
     "data": JSON.stringify({
+      "Authorization": localStorage.getItem('accessToken'),
       "email": $('#signInEmail').val(),
       "password": $('#signInPassword').val()
     })
   };
   $.ajax(settings).done(function (response, status, xhr) {
-    var atkToken = xhr.getResponseHeader("Authorization");
-    var accessToken = response.atk;
-    var refreshToken = response.rtk;
-    console.log(response);
-    console.log(response.atk);
-    console.log(response.rtk);
     localStorage.setItem('accessToken', JSON.stringify(response.atk));
     localStorage.setItem('refreshToken', JSON.stringify(response.rtk));
     document.cookie = "accessToken=" + JSON.stringify(response.atk);
@@ -60,55 +86,55 @@ function signIn() {
 
 
 // 로그인 회원 정보조회
-var loginuserid = '';
 function getUserMe(){
 	var settings = {
 		"url": "http://localhost:8080/api/users/my-page",
 		"method": "GET",
 		"timeout": 0,
 		"headers": {
-      // "Authorization": localStorage.getItem('accessToken')
-      "Authorization": getCookie('accessToken')
+      "Authorization": localStorage.getItem('accessToken')
+      // "Authorization": getCookie('accessToken')
 		},
 	  };
 	  $.ajax(settings).done(function (response) {
 		console.log("회원정보조회");	
 		console.log(response);
-    loginuserid = response.userId;
+    
     $('.login-name p:first-child').html(response.nickname)
     $('.username').html(response.nickname)
-    allMember();// 따로 실행시키니 loginuserid 할당전에 allMember()가 실행되서 오류가남
-    getChannelList();
+    loginnickname = response.nickname;
+    getChannelList(loginnickname);
+    // allMember();
   });
 }
 
 
 // 전체 회원 조회
-function allMember(){
-	var settings = {
-		"url": "http://localhost:8080/api/users",
-		"method": "GET",
-		"timeout": 0,
-		"headers": {
-      "Content-Type": "application/json",
-		  "Authorization": localStorage.getItem('accessToken')
-      // "Authorization": getCookie('accessToken')
-		}
-	  };
-	  $.ajax(settings).done(function (response) {
-		console.log(response);
-		var html = '';
-    for (var i = 0; i < response.length; i++) {	
-      if(response[i].userId != loginuserid) {
-        html += '<li>';
-        html += '<div class="memberimg" style="font-size: 12px;">'+'img'+'</div>';
-        html += '<p class="username">' + response[i].nickname + '</p>';
-        html += '</li>';
-      }
-    }
-    // document.querySelector('.memberbox').innerHTML += html;
-	});
-}
+// function allMember(){
+// 	var settings = {
+// 		"url": "http://localhost:8080/api/users",
+// 		"method": "GET",
+// 		"timeout": 0,
+// 		"headers": {
+//       "Content-Type": "application/json",
+// 		  // "Authorization": localStorage.getItem('accessToken')
+//       "Authorization": getCookie('accessToken')
+// 		}
+// 	  };
+// 	  $.ajax(settings).done(function (response) {
+// 		console.log(response);
+// 		var html = '';
+//     for (var i = 0; i < response.length; i++) {	
+//         html += '<li>';
+//         html += '<div class="memberimg" style="font-size: 12px;">'+'img'+'</div>';
+//         html += '<p class="username">' + response[i].nickname + '</p>';
+//         html += '</li>';
+//     }
+//     document.querySelector('.memberbox').innerHTML += html;
+// 	});
+// }
+
+
 
 // 회원정보 수정(업데이트)
 function updateMember() {
@@ -118,10 +144,9 @@ function updateMember() {
     "timeout": 0,
     "headers": {
       "Content-Type": "application/json",
-      "Authorization": localStorage.getItem('accessToken')
-      // "Authorization": getCookie('accessToken')
+      // "Authorization": localStorage.getItem('accessToken')
+      "Authorization": getCookie('accessToken')
     },
-    
     "data": JSON.stringify({
       "nickname": $('#updateNickname').val(),
       "password": $('#updatePassword').val()
@@ -148,12 +173,12 @@ function logoutMember(){
 	  $.ajax(settings).done(function (response) {
 		console.log(response);
     alert("로그아웃완료");
-		// console.log(response.userId);
-    // loginuserid = response.userid;
-    // $('.login-name p:first-child').empty();
+    location.href="./login.html";
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    location.href="./login.html";
+    document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
   });
 }
 
@@ -165,13 +190,9 @@ function deleteMember(){
 		"timeout": 0,
 		"headers": {
       "Content-Type": "application/json",
-		  "Authorization": localStorage.getItem('accessToken')
-      // "Authorization": getCookie('accessToken')
+		  // "Authorization": localStorage.getItem('accessToken')
+      "Authorization": getCookie('accessToken')
 		},
-    "data": JSON.stringify({
-      "email": $('#signInEmail').val(),
-      "password": $('#signInPassword').val()
-    })
 	  };
 	  $.ajax(settings).done(function (response) {
 		console.log(response);
