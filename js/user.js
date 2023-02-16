@@ -20,6 +20,13 @@ function signUp() {
   });
 }
 
+// 쿠키받기
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 //로그인 //
 function signIn() {
   var settings = {
@@ -43,8 +50,8 @@ function signIn() {
     console.log(response.rtk);
     localStorage.setItem('accessToken', JSON.stringify(response.atk));
     localStorage.setItem('refreshToken', JSON.stringify(response.rtk));
-    document.cookie = 'accessToken=${response.atk}; path=/';
-    document.cookie = 'accessToken=${response.rtk}; path=/';
+    document.cookie = "accessToken=" + JSON.stringify(response.atk);
+    document.cookie = "refreshToken=" + JSON.stringify(response.rtk);
     alert("로그인 완료!"); 
     location.href="./index.html";
   });
@@ -60,16 +67,13 @@ function getUserMe(){
 		"method": "GET",
 		"timeout": 0,
 		"headers": {
-      "Authorization": localStorage.getItem('accessToken'),
-      // "RTK": localStorage.getItem('refreshToken')
+      // "Authorization": localStorage.getItem('accessToken')
+      "Authorization": getCookie('accessToken')
 		},
 	  };
 	  $.ajax(settings).done(function (response) {
 		console.log("회원정보조회");	
 		console.log(response);
-		// console.log(response.userId);
-    // loginuserid = response.userid;
-    // $('.login-name p:first-child').empty();
     loginuserid = response.userId;
     $('.login-name p:first-child').html(response.nickname)
     $('.username').html(response.nickname)
@@ -88,6 +92,7 @@ function allMember(){
 		"headers": {
       "Content-Type": "application/json",
 		  "Authorization": localStorage.getItem('accessToken')
+      // "Authorization": getCookie('accessToken')
 		}
 	  };
 	  $.ajax(settings).done(function (response) {
@@ -98,7 +103,6 @@ function allMember(){
         html += '<li>';
         html += '<div class="memberimg" style="font-size: 12px;">'+'img'+'</div>';
         html += '<p class="username">' + response[i].nickname + '</p>';
-        html += '</ul>';
         html += '</li>';
       }
     }
@@ -115,6 +119,7 @@ function updateMember() {
     "headers": {
       "Content-Type": "application/json",
       "Authorization": localStorage.getItem('accessToken')
+      // "Authorization": getCookie('accessToken')
     },
     
     "data": JSON.stringify({
@@ -137,6 +142,7 @@ function logoutMember(){
 		"timeout": 0,
 		"headers": {
       "Authorization": localStorage.getItem('accessToken'),
+      // "Authorization": getCookie('accessToken')
 		},
 	  };
 	  $.ajax(settings).done(function (response) {
@@ -160,6 +166,7 @@ function deleteMember(){
 		"headers": {
       "Content-Type": "application/json",
 		  "Authorization": localStorage.getItem('accessToken')
+      // "Authorization": getCookie('accessToken')
 		},
     "data": JSON.stringify({
       "email": $('#signInEmail').val(),

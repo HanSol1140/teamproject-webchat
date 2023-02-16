@@ -83,6 +83,7 @@ main {
     min-width: 250px;
     width: 100%;
     overflow-y: auto;
+
 }
 
 /* 로그인한 본인 이미지&닉네임&+버튼 시작 */
@@ -172,69 +173,20 @@ main .loginmemberbox ul .loginmember-plus p {
 /* 채널 목록 시작 */
 
 main .channellist {
-    padding-left: 12px;
-    margin-top: 12px;
+    padding-left: 20px;
+
 }
-main .channellist ul li {
+main .channeltogglebox {
     display: flex;
-    margin-bottom: 4px;
+
 }
-main .channellist .chanelbox p {
-    font-size: 18px;
-    border-radius: 4px;
-    /* padding: 2px; */
+main .channeltogglebox p:nth-child(2) {
+    padding-left: 4px;
 }
-main .channellist .chanelbox p:first-child{
-    margin-right:4px;
-}
-main .channellist ul li p:first-child:not(.channeltogglebox p) {
-    margin-left: 10px;
-}
-.createchannelbtn {
-    margin-top: 10px;
-    padding: 4px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+
+
 /* /채널 목록 끝 */
 
-
-/* 멤버목록 시작 */
-main .memberlist {
-    padding-left: 12px;
-    margin-top: 12px;
-}
-main .memberlist ul li {
-    display: flex;
-    margin-bottom: 4px;
-}
-/* main .channellist ul li p:first-child { */
-    /* margin-right: 12px; */
-/* } */
-main .memberlist .memberbox p {
-    font-size: 18px;
-    border-radius: 4px;
-    padding: 2px;
-    /* background-color: red; */
-}
-main .memberlist .memberbox .memberimg{
-    margin-left: 10px;
-    overflow: hidden;
-    margin-top: 4px;
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-    border-radius: 4px;
-    background-color: #717171;
-    
-}
-main .memberlist ul li p:first-child:not(.memberbox p) {
-    margin-left: 12px;
-    margin-right: 12px;
-    margin-bottom: 4px;
-}
-/* /멤버목록 끝 */
 /* /좌측 메뉴 섹션 끝 */
 
 /* 우측 채팅방 섹션 시작 */

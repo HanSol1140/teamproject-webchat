@@ -32,16 +32,19 @@ function getChannelList(){
 		};
 		$.ajax(settings).done(function (response) {
 		console.log(response);
-		var html = '';
-		for (var i = 0; i < response.length; i++) {	
-		  if(response[i].userId != loginuserid) {
-			html += '<li>';
-			html += '<p class="channelsharp">'+'#'+'</p>';
-			html += '<p class="channelname">' + response[i].channelName + '</p>';
-			html += '</li>';
-		  }
-		}
-		document.querySelector('.chanelbox').innerHTML += html;
+
+			var html = '';
+			for (var i = 0; i < response.length; i++) {	
+				if(response[i].userId != loginuserid) {
+					var channelid = response[i].channelId;
+					html += '<li class="joinchannelbtn">';
+					html += '<a href="./chatroom.html?channelId=' + response[i].channelId + '">'
+					html += '<p class="channelname">' +'# '+ response[i].channelName + '</p>';
+					html += '</a>';
+					html += '</li>';
+				}
+			}
+		document.querySelector('.joinchannellist').innerHTML += html;
 	});
 }
 
