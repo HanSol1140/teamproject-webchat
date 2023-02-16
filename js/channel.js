@@ -38,9 +38,10 @@ function getChannelList(){
 				if(response[i].userId != loginuserid) {
 					var channelid = response[i].channelId;
 					html += '<li class="joinchannelbtn">';
-					html += '<a href="./chatroom.html?channelId=' + response[i].channelId + '">'
-					html += '<p class="channelname">' +'# '+ response[i].channelName + '</p>';
-					html += '</a>';
+					html += '<a href="./chatroom.html?channelId=' + response[i].channelId + '"><div>'
+					html += '<p>#</p>';
+					html += '<p class="channelname">' + response[i].channelName + '</p>';
+					html += '</div></a>';
 					html += '</li>';
 				}
 			}

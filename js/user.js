@@ -106,7 +106,7 @@ function allMember(){
         html += '</li>';
       }
     }
-    document.querySelector('.memberbox').innerHTML += html;
+    // document.querySelector('.memberbox').innerHTML += html;
 	});
 }
 

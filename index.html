@@ -36,61 +36,61 @@
                     <div class="top-personalmenu">
                         <p id="welcome" style="padding-left:20px;">img</p>
                     </div>
+                    <!-- 클릭시 나오는 메뉴 시작-->
+                    <div class="personalmenu-popup">
+                        <h2 class="title">개인메뉴</h2>
+                        <button onclick="location.href='updatemember.html'">회원정보수정</button>
+                        <button onclick="deleteMember()">회원탈퇴</button>
+                        <button onclick="logoutMember()">로그아웃</button>
+                      </div>
+                      <script>
+                        $('.top-personalmenu').click(function(){
+                            $('.personalmenu-popup').toggle();
+                        });
+                      </script>
+                    <!-- /클릭시 나오는 메뉴-->
                 </article>
             </section>
         </header>
         <!-- /회원&메뉴 선택 섹션 끝 -->
 
-        <!-- 멤버&채널 섹션 시작 -->
+        <!-- 채널 -->
         <main role="main">
-            <section id="section-two-member-channellist">
-                <!-- 로그인 회원 표시 -->
-                <article class="loginmemberbox">
-                        <ul>
-                            <li class="login-img">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="avatar"/>
-                            </li>
-                            <li class="login-name">
-                                <p>Mike Thomas</p>
-                                <p>▼</p>
-                            </li>
-                            <!-- 이름 클릭시 나오는 메뉴 시작-->
-                            <div class="personalmenu-chioce">
-                                <my-component>
-                                </my-component>                    
-                            </div>
-
-                            <!-- /이름 클릭시 나오는 메뉴 끝-->
-                            <li class="loginmember-plus">
-                                <p>+</p>
-                            </li>
-                            <script>
-                                $('.login-name').click(function(){
-                                    $('.personalmenu-chioce').toggle();
-                                });
-                            </script>
-                        </ul>
-                </article>
-                <!-- /로그인 회원표시 끝 -->
-
+            <section>
                 <!-- 채널 리스트 시작 -->
+                <h1>채널목록</h1>
                 <article class="channellist">
-                    <ul class="chanelbox">
-                        <li class="channeltogglebox">
-                            <p class="channeltoggle">▼</p>
-                            <p class="channelclick">채널</p>
-                        </li>
-                        <ul class="joinchannellist">
-
-                        </ul>
-                            <!-- 가입된 채널목록 들어가는 공간 -->
-                            <!-- /가입된 채널목록 들어가는 공간 -->
+                    <ul class="joinchannellist">
+                        <!-- 가입된 채널목록 들어가는 공간 -->
+                        <!-- /가입된 채널목록 들어가는 공간 -->
                     </ul>
-                    <input type="text" class="createchannelname">
-                    <button class="createchannelbtn" onclick="createChannel()">채널생성</button>
+                    <button class="createchannelbtn">채널생성</button>
+
+                    <!-- 채널생성 팝업 -->
+                    <article class="blackcurtain">
+                        <div>
+                            <h2>채널만들기</h2>
+                            <p>채널명</p>
+                            <input type="text" class="createchannelname">
+                            <button onclick="createChannel()">생성</button>
+                        </div>
+
+                    </article>
+                    <script>
+                        $('.createchannelbtn').click(function(){
+                            $('.blackcurtain').toggle();
+                        });
+                    </script>
+                    <!-- /채널생성 팝업 -->
+
                 </article>
                 <!-- /채널 리스트 끝 -->
-
+            </section>
+        </main>
+        <!-- 채널 -->
+    </div>
+</body>
+</html>
 
                 <!-- 멤버리스트 시작 -->
                 <!-- <article class="memberlist">
@@ -115,14 +115,9 @@
                     </ul>
                 </article> -->
                 <!-- /멤버리스트 끝 -->    
-            </section>
-             <!-- /멤버&채널 섹션 끝 -->
-        </main>
 
 
-    </div>
-</body>
-</html>
+
 
 
 <script src="./js/chat.js"></script>
