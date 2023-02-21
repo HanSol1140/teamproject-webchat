@@ -57,71 +57,127 @@ header {
 /* /top */
 
 
-/* 채널초대/삭제 */
-header .invitevar{
 
-    width: 50%;
-    height: 50px;
-    border-bottom: 1px solid #000;
-    padding-left: 10px;
-}
-header .channeldelete{
-    width: 50%;
-    height: 50px;
-    border-bottom: 1px solid #000;
-    padding-right: 10px;
-}
-header .invitevar button{
-    margin-top: 4px;
-    padding: 4px;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 8px; 
-    border: none;
-}
-
-header .channeldelete button{
-    margin-top: 4px;
-    padding: 4px;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 8px; 
-    border: none;
-    text-align: right;
-}
-header section article:nth-child(2) button:hover {
-    background-color: #ccc;
-    border-radius: 8px;
-    cursor: pointer;
-}
-header section article:nth-child(2) {
-    display: flex;
-    justify-content: space-between;
-}
-header section article:nth-child(2) div:nth-child(2) {
-    text-align: right;
-}
-/* 채널초대/삭제 */
 
 /* /HEADER  */
 
 
 /* MAIN */
-/* 채팅 */
 main {
-    width: 100%;
-    height: calc(100% - 100px);
-    background-color: #ccc; 
+    width: 90%;
+    min-width: 700px;
+    height: calc(90% - 100px);
+    background-color: #717171; 
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     margin-top: 50px;
+    display: flex;
+    border-radius: 4px;
 }
+/* 채널 */
+main .channelroom {
+    width: 20%;
+    min-width: 250px;
+    height: 100%;
+    border-right: 1px solid #000;
+}
+/* /채널 */
+
+
+main .chatroom {
+    width: 80%;
+    min-width: 450px;
+    height: 100%;
+}
+
+/* 채널  초대/삭제 */
+.channelmenu {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+}
+.channelmenu .invitevar{
+    position: relative;
+    width: 50%;
+    height: 50px;
+    padding-left: 10px;
+}
+
+.channelmenu .channeldelete{
+    width: 50%;
+    height: 50px;
+    border-bottom: 1px solid #000;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.channelmenu button{
+    margin-top: 4px;
+    padding: 4px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px; 
+    border: none;
+    cursor: pointer;
+}
+
+.channelmenu div:nth-child(1) button:hover, .channelmenu div:nth-child(2) button:hover{
+    background-color: #999;
+    border-radius: 8px;
+    
+}
+
+/* 채널 초대/삭제 */
+
+/* 채널목록 */
+main .channellist {
+    padding: 12px;
+    font: 20px "Lato", Arial, sans-serif;
+    font-weight: 700;
+    color: #ddd;
+}
+main .channellist .joinchannelbtn {
+    margin: 8px 0;
+    color: white;
+    border-radius: 4px;
+    padding: 4px;
+    padding-left: 8px;
+
+}
+main .channellist .joinchannelbtn:hover {
+    background-color: #555;
+}
+main .channellist .joinchannelbtn div{
+    display: flex;
+    /* border: 1px solid #000; */
+    border-radius: 4px;
+}
+main .channellist .joinchannelbtn p {
+    /* border: 1px solid #000; */
+    font-size: 20px;
+    font-weight: 300;
+}
+main .channellist .joinchannelbtn p:nth-child(1) {
+    margin-right: 4px;
+}
+/* /채널목록 */
+
+
+/* 채팅 */
+
 main .messagelist {
     background-color: 616161;
     height: calc(100% - 150px);
-
     border-bottom: 1px solid #000;
-    overflow-y: auto;
+    overflow: hidden
+    
 }
+
+
+
+
 /* 내 채팅 */
 main .mymessagebox{
     padding: 10px 40px;
@@ -131,9 +187,6 @@ main .mymessagebox{
     clear: both;
     text-align: right;
     margin-bottom: 10px;
-
-
-
 }
 main .mymessagename{
     width: 100%;
@@ -149,6 +202,7 @@ main .mymessage {
     padding: 10px;
     word-wrap: break-word;
     background-color: #ffdd22;
+    cursor: pointer;
 }
 
 /* /내 채팅 */
@@ -178,11 +232,41 @@ main .othersmessage {
     padding: 10px;
     word-wrap: break-word;
     background-color: #768bd1;
+    cursor: pointer;
+}
+/* /타인의 채팅 */
+
+
+/* 채팅 보내기 */
+main .messagesendbox {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    /* background-color: #fff; */
+    border-radius: 4px;
+
+}
+main .messagesendbox input {
+    width: 80%;
+    height: 50px;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+main .messagesendbox .sendbtn {
+    width: 20%;
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
 }
 
+/* 채팅 보내기 */
 
-
-/* /타인의 채팅 */
 /* /채팅*/
 /* /MAIN*/
 
@@ -253,4 +337,44 @@ main .othersmessage {
 }
 
 /* /채널초대 팝업 */
+
+/* 쓰레드 댓글 */
+.comment-popup {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* display: none; */
+}
+.comment-popup .commentarea {
+    position: absolute;
+    right: 0;
+    min-width: 300px;
+    width: 20%;
+    height: 100%;
+    /* width: 20%; */
+    background-color: #fff;
+}
+/* /쓰레드 댓글 */
+
+
+
+
 /* /팝업메뉴 모음 */
+
+
+
+
+
+/* 미디어쿼리 */
+/* 800이하로 내려가면 */
+@media screen and (max-width:800px){
+    .channelroom {
+        display: none;
+    }
+    .chatroom {
+        width: 100%;
+        border: 1px solid #000;
+    }
+
+}

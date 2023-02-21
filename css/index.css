@@ -126,7 +126,7 @@ main .createchannelbtn {
 /* /MAIN*/
 
 
-/* 팝업메뉴 모음 */
+/* 팝업 모음 */
 
 /* 우측상단 팝업메뉴*/
 .personalmenu-popup {
@@ -192,3 +192,48 @@ main .createchannelbtn {
     padding: 4px;
 }
 /* /채널생성 / 팝업 */
+
+/* 회원정보 수정 / 팝업 */
+.updatemember-popup {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.updatemember-popup div {
+    position: relative;
+    width: 500px;
+    height: 220px;
+    top: 35%;
+    left: 50%;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: #fff;
+    transform: translate(-50%,-50%);
+}
+
+.updatemember-popup div h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.updatemember-popup div p {
+    text-align: left;
+}
+.updatemember-popup div input {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.updatemember-popup div button {
+    position: relative;
+    left:300px;
+    font-size: 16px;
+    padding: 4px;
+}
+/* /회원정보 수정 / 팝업 */
+

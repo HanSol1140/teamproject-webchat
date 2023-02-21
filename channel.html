@@ -7,20 +7,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/channel.css">
-    <script src="./js/jquery-3.3.1.min.js"></script>
-    <script src="./js/user.js"></script>
+
+    <script src="./js/systemfile/jquery-3.3.1.min.js"></script>
+    <script src="./js/reissue.js"></script>
+    <script src="./js/cookies.js"></script>
+
     <script src="./js/channel.js"></script>
     <script>
         $(document).ready(function () {
-            const urlParams = new URL(location.href).searchParams;
-            const channelid = urlParams.get('channelId');
 
-    
-            console.log(channelid+"=채널아이디");
-            $('.sendbtn').click(function() {
-                createThread(channelid);
-            });
-            getThreads(channelid);
+
 
         });
     </script>
@@ -42,29 +38,6 @@
                     <div class="top-personalmenu">
                         <p id="welcome" style="padding-left:20px;">img</p>
                     </div>
-                    <!-- 클릭시 나오는 메뉴 시작-->
-                    <div class="personalmenu-popup">
-                        <h2 class="title">개인메뉴</h2>
-                        <button onclick="location.href='updatemember.html'">회원정보수정</button>
-                        <button onclick="deleteMember()">회원탈퇴</button>
-                        <button onclick="logoutMember()">로그아웃</button>
-                      </div>
-                      <script>
-                        $('.top-personalmenu').click(function(){
-                            $('.personalmenu-popup').toggle();
-                        });
-                      </script>
-                    <!-- /클릭시 나오는 메뉴-->
-                </article>
-                <article>
-                    <div class="invitevar">
-                        <button class="invitebtn">+초대하기</button>
-                    </div>                    
-
-
-                    <div class="channeldelete">
-                        <button onclick="deleteChannel()">채널삭제</button>
-                    </div>
                 </article>
             </section>
         </header>
@@ -72,14 +45,41 @@
 
         <!-- 채팅방 -->
         <main role="main">
-            <section class="messagelist">
+            <section class="channelroom">
 
             </section>
-            <section class="messagesendbox">
-                <input type="text" class="writebox">
-            
-                </input>
-                <button class="sendbtn"> 보내기 </button>
+            <section class="chatroom">
+                <article class="channelmenu">
+                    <div class="invitevar">
+                        <button class="invitebtn">+초대하기</button>
+                    </div>                    
+                    <div class="channeldelete">
+                        <button class="channeldeletebtn" onclick="deleteChannel()">채널삭제</button>
+                    </div>
+                </article>
+
+                <article class="messagelist">
+
+                </article>
+
+                <article class="messagesendbox">
+                    <input type="text" class="writebox" plackholder="123123"></input>
+                    <button class="sendbtn" onclick="createThread()"> 보내기 </button>
+                    <script>
+                        // 엔터눌러서 실행
+                        $(".writebox").keypress(function (e) {
+                            if (e.keyCode === 13) {
+                                createThread();
+                            }
+                        });
+                        $(document).on('click', '.othersmessage', function() {
+                            $('.comment-popup').toggle();
+                        });
+                        $(document).on('click', '.mymessage', function() {
+                            $('.comment-popup').toggle();
+                        });
+                    </script>
+                </article>
             </section>
         </main>
         <!-- /채팅방 -->
@@ -92,7 +92,7 @@
 <!-- 채널초대 팝업 -->
 <article class="invitenamewriter-popup">
     <div class="invitenamebox">
-        <h2>채널만들기</h2>
+        <h2>유저 초대하기</h2>
         <p>채널명</p>
         <input type="text" class="invitename" placeholder="이메일입력">
         <button onclick="inviteUser()">생성</button>
@@ -107,4 +107,13 @@
         $('.invitenamewriter-popup').toggle();
     });
 </script>
-<!-- 채널초대 팝업 -->
+<!-- /채널초대 팝업 -->
+
+
+<!-- 쓰레드 댓글창 팝업 -->
+<section class="comment-popup">
+    <div class="commentarea">
+
+    </div>
+</section>
+<!-- /쓰레드 댓글창 팝업 -->

@@ -7,20 +7,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/index.css">
-    <script src="./js/jquery-3.3.1.min.js"></script>
+    
+    <script src="./js/systemfile/jquery-3.3.1.min.js"></script>
+    <script src="./js/reissue.js"></script>
     <script src="./js/cookies.js"></script>
-    <script src="./js/user.js"></script>
-    <script src="./js/channel.js"></script>
-    <script>
-        $(document).ready(function () {
-            getUserMe();
-
-            // const urlParams = new URL(location.href).searchParams;
-            // const name = urlParams.get('id');
-            // console.log(name);
-        });
-        
-    </script>
+    <script src="./js/index.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -56,8 +47,7 @@
                         <!-- /가입된 채널목록 들어가는 공간 -->
                     </ul>
                     <button class="createchannelbtn">채널생성</button>
-                    <button onclick="refreshToken()">RTK토큰재발급테스트</button>
-                    <button onclick="deleteCookie()">쿠키삭제테스트</button>
+                    <!-- <button onclick="refreshToken()">RTK토큰재발급테스트</button> -->
                 </article>
                 <!-- /채널 리스트 끝 -->
             </section>
@@ -70,11 +60,11 @@
 <script src="./js/component.js"></script>
 
 
-<!-- 팝업 -->
+<!-- 팝업목록들 -->
 <!-- 우측 상단 팝업-->
 <div class="personalmenu-popup">
     <h2 class="title">개인메뉴</h2>
-    <button onclick="location.href='updatemember.html'">회원정보수정</button>
+    <button class="updatememberbtn">회원정보수정</button>
     <button onclick="deleteMember()">회원탈퇴</button>
     <button onclick="logoutMember()">로그아웃</button>
     </div>
@@ -82,12 +72,15 @@
     $('.top-personalmenu').click(function(){
         $('.personalmenu-popup').toggle();
     });
+    $('.updatememberbtn').click(function(){
+        $('.updatemember-popup').show();
+    });
     </script>
 <!-- /우측 상단 팝업-->
 
 
 <!-- 채널생성 팝업 -->
-<article class="blackcurtain">
+<section class="blackcurtain">
     <div>
         <h2>채널만들기</h2>
         <p>채널명</p>
@@ -95,7 +88,7 @@
         <button onclick="createChannel()">생성</button>
         <button class="blackcurtaincloser">취소</button>
     </div>
-</article>
+</section>
 <script>
     $('.createchannelbtn').click(function(){
         $('.blackcurtain').toggle();
@@ -106,33 +99,24 @@
 </script>
 <!-- /채널생성 팝업 -->
 
-
-
-                <!-- 멤버리스트 시작 -->
-                <!-- <article class="memberlist">
-                    <ul class="memberbox">
-                        <li class="memberlisttogglebox">
-                            <p class="membertoggle">▼</p>
-                            <p class="memberclick">멤버목록</p>
-                        </li>
-                        <ul class="userlist">
-                            <li class="userbox">
-                                <div class="memberimg" style="font-size: 12px;">
-                                    img
-                                </div>
-                                <p class="username">
-                                    유저명
-                                </p>
-                                <p class="usernamedescription">
-                                    (본인)
-                                </p>
-                            </li>
-                        </ul>
-                    </ul>
-                </article> -->
-                <!-- /멤버리스트 끝 -->    
-
-
+<!-- 회원정보 수정 팝업 -->
+<section class="updatemember-popup">
+    <div>
+        <h2>회원정보수정</h2>
+        <label>Nickname</label>
+        <input type="text" id="updateNickname">
+        <label>Password</label>
+        <input type="password" id="updatePassword">
+        <button onclick="updateMember()">회원정보 변경</a></button>
+        <button class="updatememberbtnclose">취소</a></button>
+    </div>
+</section>
+<script>
+    $('.updatememberbtnclose').click(function(){
+        $('.updatemember-popup').hide();
+    });
+</script>
+<!-- /회원정보 수정 팝업 -->
 
 
 
